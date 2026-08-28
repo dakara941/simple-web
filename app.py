@@ -1,18 +1,18 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # 作品集首頁內容
+    # 預留：未來可以回傳 HTML 網頁 (如 index.html)
     return jsonify({
         "status": "success",
-        "message": "歡迎來到我的 Python 後端作品集！",
-        "owner": "你的名字"
+        "message": "Flask 作品集成功部署！"
     })
 
 if __name__ == '__main__':
-    # 關鍵：雲端平台會動態分配 Port，必須讀取環境變數
+    # 雲端平台分配的 Port，找不到時（如本地測試）預設為 5000
     port = int(os.environ.get("PORT", 5000))
+    # 必須綁定在 0.0.0.0，平台才能從外部對接流量
     app.run(host='0.0.0.0', port=port)
