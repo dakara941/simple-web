@@ -9,7 +9,14 @@ def home():
     return jsonify({
         "status": "success",
         "message": "Flask 作品集成功部署！"
+        
     })
+
+from flask import Flask, render_template  # 引入 render_template
+
+@app.route('/')
+def home():
+    return render_template('index.html')  # 渲染 HTML 畫面
 
 if __name__ == '__main__':
     # 雲端平台分配的 Port，找不到時（如本地測試）預設為 5000
