@@ -48,7 +48,7 @@
             padding: 3rem 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 30vh;
+            margin-bottom: 20vh;
         }
         .hero h1 {
             margin-top: 0;
@@ -65,6 +65,7 @@
             border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             will-change: transform;
+            margin-bottom: 50px;
         }
         .spacer {
             height: 80vh;
@@ -84,12 +85,12 @@
     <div class="container">
         <div class="hero">
             <h1>歡迎來到我的網站</h1>
-            <p>請向下或向上滾動頁面，觀看 my_image.jpg 隨滾輪移動的效果。</p>
+            <p>請向下或向上滾動頁面，觀看圖片隨滾輪移動的效果。</p>
         </div>
 
         <!-- 使用 url_for 載入 static 資料夾內的圖片 -->
-        <img src="{{ url_for('static', filename='my_image.jpg') }}" class="parallax-img" id="scrollImage" alt="我的圖片">
-        <img src="{{ url_for('static', filename='lily.jpg') }}" class="parallax-img" id="scrollImage" alt="lily">
+        <img src="{{ url_for('static', filename='my_image.jpg') }}" class="parallax-img" alt="我的圖片">
+        <img src="{{ url_for('static', filename='lily.jpg') }}" class="parallax-img" alt="莉莉圖片">
 
         <div class="spacer"></div>
     </div>
@@ -98,11 +99,12 @@
     <script>
         window.addEventListener('scroll', function() {
             const scrollPosition = window.pageYOffset;
-            const img = document.getElementById('scrollImage');
+            const images = document.querySelectorAll('.parallax-img');
             
-            // 數值越小移動越慢，若想改變移動方向可改為負數（例如 -0.2）
             const speed = 0.2;
-            img.style.transform = `translateY(${scrollPosition * speed}px)`;
+            images.forEach(img => {
+                img.style.transform = `translateY(${scrollPosition * speed}px)`;
+            });
         });
     </script>
 
